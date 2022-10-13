@@ -1,0 +1,75 @@
+#loopar koden tills vi bryter den
+while True:
+
+    #sätter värde på variablar vi ska använda
+    calctype = "0"
+    
+    #printar de olika valen
+    print("1.) Addera två tal".center(40))
+    print("2.) Multiplicera två tal".center(40))
+    print("3.) Subtrahera ett tal från ett annat".center(40))
+    print("4.) Dividera två tal".center(40))
+    print("5.) Avsluta programmet".center(40))
+
+    #frågar efter vilken typ av beräkning man ska göra eller om man vill avsluta programmet
+    calctype = input("Välj mellan 1-5: ")
+    while calctype not in ("1", "2", "3", "4", "5"):
+        calctype = input("Du gjorde fel, välj mellan 1-5: ")
+
+    #frågar efter tal 1 och accepterar bara nummer
+    if calctype in ("1", "2", "3", "4"):
+        while True:
+            try:
+                num1 = float(input("Ange första talet: "))
+            except ValueError:
+                print("Du skrev inte ett tal, försök igen")
+                continue
+            else:
+                break
+
+        #frågar efter tal 2 och accepterar bara nummer och tar inte emot 0 om det är division
+        while True:
+            try:
+                num2 = float(input("Ange andra talet: "))
+            except ValueError:
+                print("Du skrev inte ett tal, försök igen")
+                continue
+            else:
+                break
+        while calctype == "4" and num2 == 0:
+            print("Du kan inte dela med 0, skriv ett nytt tal")
+            while True:
+                try:
+                    num2 = float(input("Ange andra talet: "))
+                except ValueError:
+                    print("Du skrev inte ett tal, försök igen")
+                    continue
+                else:
+                    break
+                break
+            continue
+            
+            
+    #avslutar programmet om man valde 5
+    else:
+        break
+
+    #beräknar svaret beroende på vilket nummer man valde och ger rätt tecken till sista printen
+    if calctype == "1":
+        answer = num1 + num2
+        icon = "+"
+    elif calctype == "2":
+        answer = num1 * num2
+        icon = "*"
+    elif calctype == "3":
+        answer = num1 - num2
+        icon = "-"
+    elif calctype == "4":
+        answer = num1 / num2
+        icon = "/"
+
+    #avrundar svaret till 2 decimaler
+    real = (round(answer, 2))
+
+    #printar svaret
+    print(str(num1), icon, str(num2), " = ", real)
